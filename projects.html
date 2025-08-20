@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPK Portfolio</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    header.site-header {
+      padding: 10px 15px; /* space on mobile */
+    }
+    .page h1 {
+      margin-top: 20px; /* heading not touching screen */
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      background: #fff;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .project-card:hover { transform: scale(1.03); }
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      background: #f9f9f9;
+    }
+    .project-card h3 {
+      margin: 10px 0;
+      font-size: 18px;
+      color: #000;
+    }
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      color: #000;
+    }
+    .modal img.logo {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin: 0 auto 15px;
+      display: block;
+    }
+    .modal h2, .modal p { color: #000; }
+    .modal .screenshots {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+    .modal .screenshots img {
+      width: 100px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .modal .links {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .modal .links a {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      border-radius: 6px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      min-width: 100px;
+    }
+    .modal .links a.github { background: #333; }
+    .modal .links a.website { background: #0073e6; }
+    .modal .links a.certificate { background: #28a745; }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+    /* Image Preview Modal */
+    .img-preview {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .img-preview img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+    .img-preview .close-preview {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+      color: #fff;
+      cursor: pointer;
+    }
+    /* Mobile-specific modal fixes */
+    @media (max-width: 600px) {
+      .modal-content {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+        height: auto;
+      }
+      .modal img.logo {
+        width: 80px;
+        height: 80px;
+      }
+      .modal h2 {
+        font-size: 20px;
+      }
+      .modal p {
+        font-size: 14px;
+        line-height: 1.4;
+        text-align: left;
+      }
+      .modal .screenshots img {
+        width: 80px;
+        height: 60px;
+      }
+      .modal .links {
+        flex-direction: column;
+      }
+      .modal .links a {
+        flex: none;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand">GPK <span>Portfolio</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation">&#9776;</label>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="internship.html">Internship</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="featured.html">Featured</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container page">
+  <h1>Projects</h1>
+  <div class="card-grid">
+    <div class="project-card" onclick="openModal('project1')">
+      <img src="assets/images/project1.jpg" alt="Project 1">
+      <h3>Library Management System</h3>
+    </div>
+    <div class="project-card" onclick="openModal('project2')">
+      <img src="assets/images/project2.jpg" alt="Project 2">
+      <h3>E-commerce Website</h3>
+    </div>
+    <div class="project-card" onclick="openModal('project3')">
+      <img src="assets/images/project3.jpg" alt="Project 3">
+      <h3>GoDrivify App: A Driver Booking Platform</h3>
+    </div>
+    <div class="project-card" onclick="openModal('project4')">
+      <img src="assets/images/project4.jpg" alt="Project 4">
+      <h3>Loan Eligibility Prediction Web Application</h3>
+    </div>
+  </div>
+</main>
+
+<!-- Modals -->
+<div id="project1" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('project1')">&times;</span>
+    <img src="assets/images/project1.jpg" alt="Project 1 Logo" class="logo">
+    <h2>Library Management System</h2>
+    <p>Developed a command-line library management system using Core Java and MySQL. Implemented OOP principles and secure database interaction to streamline book, member, and loan tracking. Technologies Used: Java, MySQL, JDBC, OOP</p>
+    <div class="screenshots">
+      <img src="assets/images/project11.jpg" onclick="openImgPreview(this.src)">
+      <img src="assets/images/project12.jpg" onclick="openImgPreview(this.src)">
+      <img src="assets/images/project13.jpg" onclick="openImgPreview(this.src)">
+    </div>
+    <div class="links">
+      <a href="https://github.com/pkgokul/LibraryManagementSystem" class="github" target="_blank">GitHub</a>
+    </div>
+  </div>
+</div>
+
+<div id="project2" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('project2')">&times;</span>
+    <img src="assets/images/project2.jpg" alt="Project 2 Logo" class="logo">
+    <h2>E-commerce Website</h2>
+    <p>Enhanced a responsive e-commerce platform enabling users to browse, search, and add products to cart. The website was built with HTML, CSS, and JavaScript to deliver a smooth user experience and interactive design. Technologies Used: HTML, CSS, JavaScript</p>
+    <div class="screenshots">
+      <img src="assets/images/project21.jpg" onclick="openImgPreview(this.src)">
+      <img src="assets/images/project22.jpg" onclick="openImgPreview(this.src)">
+      <img src="assets/images/project23.jpg" onclick="openImgPreview(this.src)">
+    </div>
+    <div class="links">
+      <a href="https://github.com/pkgokul/E-Commerce" class="github" target="_blank">GitHub</a>
+      <a href="https://pkgokul.github.io/E-Commerce/" class="website" target="_blank">Website</a>
+    </div>
+  </div>
+</div>
+
+<div id="project3" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('project3')">&times;</span>
+    <img src="assets/images/project3.jpg" alt="Project 3 Logo" class="logo">
+    <h2>GoDrivify App: A Driver Booking Platform</h2>
+    <p>Built a driver booking app enabling users to connect with verified drivers based on location, language, and experience. Integrated detailed driver profiles and user-friendly booking interface. Technologies Used: Java, Android Studio, MySQL, Postman, Figma</p>
+    <div class="screenshots">
+      <img src="assets/images/project31.jpg" onclick="openImgPreview(this.src)">
+      <img src="assets/images/project32.jpg" onclick="openImgPreview(this.src)">
+      <img src="assets/images/project33.jpg" onclick="openImgPreview(this.src)">
+    </div>
+    <div class="links">
+      <a href="https://github.com/pkgokul/GoDrivify" class="github" target="_blank">GitHub</a>
+    </div>
+  </div>
+</div>
+
+<div id="project4" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('project4')">&times;</span>
+    <img src="assets/images/project4.jpg" alt="Project 4 Logo" class="logo">
+    <h2>Loan Eligibility Prediction Web Application</h2>
+    <p>Enhanced a Loan Eligibility Prediction web application using HTML, CSS, and JavaScript by implementing logic-based criteria to assess loan approval based on user inputs such as income and loan amount. Technologies Used: HTML, CSS, JavaScript</p>
+    <div class="screenshots">
+      <img src="assets/images/project41.jpg" onclick="openImgPreview(this.src)">
+      <img src="assets/images/project42.jpg" onclick="openImgPreview(this.src)">
+      <img src="assets/images/project43.jpg" onclick="openImgPreview(this.src)">
+    </div>
+    <div class="links">
+      <a href="https://github.com/pkgokul/NLC-Internship" class="github" target="_blank">GitHub</a>
+      <a href="https://pkgokul.github.io/NLC-Internship/" class="website" target="_blank">Website</a>
+    </div>
+  </div>
+</div>
+
+<!-- Image Preview Modal -->
+<div id="imgPreview" class="img-preview">
+  <span class="close-preview" onclick="closeImgPreview()">&times;</span>
+  <img id="previewImg" src="" alt="Preview">
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> GPK Portfolio. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  function openModal(id) { document.getElementById(id).style.display = "flex"; }
+  function closeModal(id) { document.getElementById(id).style.display = "none"; }
+  document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+  });
+  function openImgPreview(src) {
+    document.getElementById('previewImg').src = src;
+    document.getElementById('imgPreview').style.display = 'flex';
+  }
+  function closeImgPreview() {
+    document.getElementById('imgPreview').style.display = 'none';
+  }
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

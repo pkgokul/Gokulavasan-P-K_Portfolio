@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPK Portfolio</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body,
+    .container.page {
+      padding-left: 15px;
+      padding-right: 15px;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .skill-card {
+      text-align: center;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .skill-card img {
+      display: block;
+      margin: 0 auto 0.8rem auto;
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+    }
+
+    .skill-card h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 0;
+      color: #333;
+    }
+
+    /* Header and nav spacing - same as index.html */
+    .site-header .container.nav-wrap {
+      padding-left: 0;
+      padding-right: 0;
+      box-sizing: border-box;
+      position: relative; /* prevent nav movement */
+    }
+
+    h1 {
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    /* Keep brand on one line */
+    .brand {
+      white-space: nowrap;
+    }
+
+    /* Responsive adjustments for skills grid */
+    @media (max-width: 768px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      nav a {
+        display: block;
+        margin: 4px 0;   /* reduced spacing */
+        padding: 6px 0;  /* compact but still clickable */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand">GPK <span>Portfolio</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation">&#9776;</label>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html" class="active">Skills</a>
+      <a href="internship.html">Internship</a>
+      <a href="projects.html">Projects</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="featured.html">Featured</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container page">
+  <h1>Skills</h1>
+  <div class="card-grid">
+    <div class="skill-card">
+      <img src="assets/images/skill1.svg" alt="Java logo">
+      <h3>Java</h3>
+    </div>
+    <div class="skill-card">
+      <img src="assets/images/skill2.svg" alt="JavaScript logo">
+      <h3>JavaScript</h3>
+    </div>
+    <div class="skill-card">
+      <img src="assets/images/skill3.svg" alt="MySQL logo">
+      <h3>MySQL</h3>
+    </div>
+    <div class="skill-card">
+      <img src="assets/images/skill4.svg" alt="HTML5 logo">
+      <h3>HTML5</h3>
+    </div>
+    <div class="skill-card">
+      <img src="assets/images/skill5.svg" alt="CSS3 logo">
+      <h3>CSS3</h3>
+    </div>
+    <div class="skill-card">
+      <img src="assets/images/skill6.svg" alt="Python logo">
+      <h3>Python</h3>
+    </div>
+    <div class="skill-card">
+      <img src="assets/images/skill7.svg" alt="MongoDB logo">
+      <h3>MongoDB</h3>
+    </div>
+    <div class="skill-card">
+      <img src="assets/images/skill8.svg" alt="Figma logo">
+      <h3>Figma</h3>
+    </div>
+    <div class="skill-card">
+      <img src="assets/images/skill9.svg" alt="SpringBoot logo">
+      <h3>Spring Boot</h3>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> GPK Portfolio. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script>
+  // Update footer year dynamically
+  document.addEventListener('DOMContentLoaded', () => {
+    const y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+
+    // Fix mobile nav: close menu when a link is clicked
+    const navLinks = document.querySelectorAll('nav a');
+    const navToggle = document.getElementById('nav-toggle');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (navToggle.checked) navToggle.checked = false;
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

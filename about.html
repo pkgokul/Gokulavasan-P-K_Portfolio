@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPK Portfolio</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Color variables */
+    :root {
+      --accent: #60a5fa;
+      --accent2: #3b82f6;
+      --muted: #999999;
+      --card: #111827;
+      --border: #1f2937;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      --text: #e5e7eb;
+      --page-bg: #0f172a;
+    }
+
+    body,
+    .container.page {
+      padding-left: 15px;
+      padding-right: 15px;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      background: var(--page-bg);
+      color: var(--text);
+    }
+
+    .site-header {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .grid-2 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .grid-left,
+    .grid-right {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* About Card */
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      text-align: justify;
+      text-justify: inter-word;
+      word-wrap: break-word;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      line-height: 1.8;
+    }
+
+    .about-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .about-card p {
+      margin-bottom: 1rem;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .about-card strong {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Profile Card */
+    .profile-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .profile-card img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 6px solid var(--accent);
+      box-shadow: var(--shadow);
+    }
+
+    .profile-card h3 {
+      margin-bottom: 5px;
+      font-size: 1.4rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .profile-card p {
+      color: var(--text);
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    /* Education Card */
+    .education-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .education-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .education-card h2 {
+      color: var(--accent);
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    .education-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .education-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .education-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .education-item div {
+      display: flex;
+      flex-direction: column;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--accent);
+    }
+
+    h1 {
+      margin-top: 20px;
+      margin-bottom: 25px;
+    }
+
+    /* Tablet & Mobile Styles */
+    @media (max-width: 1024px) {
+      .grid-2 {
+        flex-direction: column;
+      }
+
+      .grid-left,
+      .grid-right {
+        width: 100%;
+        flex-direction: column;
+      }
+
+      /* Mobile Order Fix */
+      .profile-card {
+        order: 1; /* Profile first */
+      }
+
+      h1 {
+        order: 2; /* About heading next */
+        text-align: center;
+        width: 100%;
+      }
+
+      .about-card {
+        order: 3; /* About card after heading */
+      }
+
+      .education-card {
+        order: 4; /* Education last */
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand">GPK <span>Portfolio</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation">&#9776;</label>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="internship.html">Internship</a>
+      <a href="projects.html">Projects</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="featured.html">Featured</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container page">
+  <h1>About Me</h1>
+
+  <div class="grid-2">
+    <!-- Left Column: About -->
+    <div class="grid-left">
+      <div class="about-card">
+        <p>
+          I'm <strong>Gokulavasan P K</strong>, an aspiring software developer and problem solver with a passion for creating modern and scalable web applications.
+        </p>
+        <p>
+          I am a final-year Computer Science student with expertise in web development, full-stack development, and machine learning. I focus on delivering clean, efficient, and user-friendly solutions.
+        </p>
+        <p>
+          My career goal is to contribute to impactful projects where I can apply my technical skills in HTML, CSS, JavaScript, Java, Python, MySQL, and frameworks such as React, while continuously expanding my knowledge.
+        </p>
+        <p>
+          <strong>Core Strengths:</strong> Problem-solving, teamwork, leadership, critical thinking, adaptability, and attention to detail.
+        </p>
+        <p>
+          I bring creativity, analytical thinking, and a strong commitment to delivering high-quality outcomes. My approach combines technical expertise with a user-centric perspective to ensure meaningful results.
+        </p>
+        <p>
+          Outside of development, I enjoy photography, chess, and exploring emerging technologies. Feel free to explore my projects or connect for potential collaborations.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Column: Profile + Education -->
+    <div class="grid-right">
+      <div class="profile-card">
+        <img src="assets/images/profile.jpg" alt="GPK Profile">
+        <h3>Gokulavasan P K</h3>
+        <p>Final-Year Computer Science Student</p>
+      </div>
+
+      <div class="education-card">
+        <h2>Education</h2>
+        <div class="education-list">
+
+          <div class="education-item">
+            <img src="assets/images/saveetha_logo.jpg" alt="Saveetha School of Engineering Logo">
+            <div>
+              <strong>Saveetha School of Engineering</strong> BE, Computer Science<br>
+              Sep 2022 - Sep 2026 | CGPA: 8.4
+            </div>
+          </div>
+
+          <div class="education-item">
+            <img src="assets/images/velammal_logo.jpg" alt="Velammal Matriculation Higher Secondary School Logo">
+            <div>
+              <strong>Velammal Matriculation Higher Secondary School</strong> Class 12, Biomathematics<br>
+              Jun 2021 - Mar 2022 | Percentage: 73.3%
+            </div>
+          </div>
+
+          <div class="education-item">
+            <img src="assets/images/sms_vimal_logo.jpg" alt="SMS Vimal Matric. Hr. Sec. School Logo">
+            <div>
+              <strong>SMS Vimal Matric. Hr. Sec. School</strong> Grade 10<br>
+              Jun 2019 - Mar 2020 | Percentage: 87.4%
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> GPK Portfolio. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+  });
+</script>
+
+</body>
+</html>

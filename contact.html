@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPK Portfolio</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Match index.html responsive padding */
+    body,
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+      box-sizing: border-box;
+    }
+
+    .site-header .container.nav-wrap {
+      padding-left: 0;
+      padding-right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+    }
+
+    /* Brand in one line */
+    .brand {
+      white-space: nowrap;
+    }
+
+    /* Default nav link spacing */
+    nav a {
+      padding: 0 15px;
+      display: inline-block;
+      line-height: 1.5;
+    }
+
+    /* Fix mobile nav links spacing */
+    @media (max-width: 768px) {
+      nav a {
+        display: block;
+        margin: 4px 0;
+        padding: 6px 0;
+      }
+    }
+
+    /* Contact grid styling */
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .contact-item {
+      flex: 1 1 120px;
+      max-width: 200px;
+      text-align: center;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    /* Two per row in mobile view */
+    @media (max-width: 768px) {
+      .contact-item {
+        flex: 1 1 calc(50% - 15px);
+        max-width: calc(50% - 15px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-item {
+        flex: 1 1 45%;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .contact-item {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand">GPK <span>Portfolio</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation">&#9776;</label>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="internship.html">Internship</a>
+      <a href="projects.html">Projects</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="featured.html">Featured</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container page">
+  <h1>Contact</h1>
+  <p>Let's connect. You can reach me through any of the platforms below.</p>
+  <div class="contact-grid">
+    <a class="contact-item" href="https://github.com/pkgokul" target="_blank" rel="noopener">
+      <span class="icon">🐙</span><span>GitHub</span>
+    </a>
+    <a class="contact-item" href="https://www.linkedin.com/in/gokulavasan12/" target="_blank" rel="noopener">
+      <span class="icon">🔗</span><span>LinkedIn</span>
+    </a>
+    <a class="contact-item" href="https://wa.me/919500301912" target="_blank" rel="noopener">
+      <span class="icon">💬</span><span>WhatsApp</span>
+    </a>
+    <a class="contact-item" href="mailto:pkgokulavasan@gmail.com">
+      <span class="icon">✉️</span><span>Email</span>
+    </a>
+    <a class="contact-item" href="tel:+919500301912">
+      <span class="icon">📞</span><span>Mobile</span>
+    </a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> GPK Portfolio. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Set current year
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Close mobile nav when link clicked
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      const navToggle = document.getElementById('nav-toggle');
+      if (navToggle.checked) navToggle.checked = false;
+    });
+  });
+</script>
+
+</body>
+</html>

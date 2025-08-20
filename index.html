@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gokulavasan P K Portfolio</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/icon.jpg">
+  <style>
+    /* Responsive padding for all devices */
+    body,
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+      box-sizing: border-box;
+    }
+
+    .site-header .container.nav-wrap {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    /* Hero and highlights responsive adjustments */
+    @media (max-width: 768px) {
+      .hero-left h1 {
+        font-size: 1.8rem;
+        line-height: 2.2rem;
+      }
+
+      .hero-left p.tagline,
+      .hero-left blockquote.quote {
+        font-size: 0.95rem;
+      }
+
+      .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-left,
+      .hero-right {
+        width: 100%;
+      }
+
+      .profile-wrap {
+        margin-top: 20px;
+      }
+
+      nav a {
+        display: block;
+        margin: 4px 0;   /* reduced spacing */
+        padding: 6px 0;  /* compact clickable area */
+      }
+    }
+
+    /* Highlights section - flexible for all devices */
+    .highlights {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      gap: 20px;
+    }
+
+    .highlights .card {
+      flex: 1 1 calc(33.333% - 20px);
+      text-align: center;
+      min-width: 150px;
+    }
+
+    @media (max-width: 768px) {
+      .highlights {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .highlights .card {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand">GPK <span>Portfolio</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation">&#9776;</label>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="internship.html">Internship</a>
+      <a href="projects.html">Projects</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="featured.html">Featured</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="home container">
+  <section class="hero">
+    <div class="hero-left">
+      <h2><h1>Hi, I'm <span>Gokulavasan P K</span></h1></h2>
+      <p class="tagline">Building clean, user-centric web experiences.</p>
+      <blockquote class="quote">“Code is like humor. When you have to explain it, it’s bad.” – Cory House</blockquote>
+    </div>
+    <div class="hero-right">
+      <div class="profile-wrap">
+        <img src="assets/images/profile.jpg" alt="GPK Profile" class="profile-photo">
+        <a class="btn primary" href="https://drive.google.com/file/d/1CnPxhr8A_OHdCsp2840dV4k2Kj4qzOnJ/view?usp=sharing" download>View Resume</a>
+      </div>
+    </div>
+  </section>
+  <section class="highlights">
+    <div class="card">
+      <h3>4+</h3>
+      <p>Projects Completed</p>
+    </div>
+    <div class="card">
+      <h3>1</h3>
+      <p>Industry Internship</p>
+    </div>
+    <div class="card">
+      <h3>10</h3>
+      <p>Certificates</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> GPK Portfolio. All rights reserved.</p>
+  </div>
+</footer>
+<script src="assets/main.js"></script>
+<script>
+  // Update footer year dynamically
+  document.addEventListener('DOMContentLoaded', () => {
+    const y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+
+    // Fix mobile back issue: close nav when a link is clicked
+    const navLinks = document.querySelectorAll('nav a');
+    const navToggle = document.getElementById('nav-toggle');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (navToggle.checked) {
+          navToggle.checked = false;
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

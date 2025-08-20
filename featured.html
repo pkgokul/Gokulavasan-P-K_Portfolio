@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPK Portfolio</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Container and header padding */
+    body,
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .site-header .container.nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .site-header .brand {
+      white-space: nowrap;
+    }
+
+    nav a {
+      padding: 0 15px;
+      display: inline-block;
+      line-height: 1.5;
+    }
+
+    /* Hamburger menu for mobile */
+    @media (max-width: 768px) {
+      nav a {
+        display: block;
+        margin: 4px 0;
+        padding: 6px 0;
+      }
+    }
+
+    /* Card grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      background: #fff;
+      cursor: pointer;
+      transition: transform 0.2s;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      max-height: 150px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .card h4 {
+      margin: 5px 0 0 0;
+      padding: 0 5px;
+      font-size: 16px;
+      color: #000;
+      text-align: center;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+      display: block;
+      white-space: normal;
+    }
+
+    /* Mobile view adjustments */
+    @media (max-width: 480px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+        justify-items: center;
+      }
+
+      .container.page h1,
+      .site-header .brand {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand">GPK <span>Portfolio</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation">&#9776;</label>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="internship.html">Internship</a>
+      <a href="projects.html">Projects</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="featured.html" class="active">Featured</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container page">
+  <h1>Featured</h1>
+  <div class="filter">
+    <button class="btn small" onclick="renderFeatured('all')">All</button>
+    <button class="btn small" onclick="renderFeatured('project')">Projects</button>
+    <button class="btn small" onclick="renderFeatured('certificate')">Certificates</button>
+    <button class="btn small" onclick="renderFeatured('internship')">Internship</button>
+    <button class="btn small" onclick="renderFeatured('volunteer')">Volunteer</button>
+  </div>
+
+  <div id="featured-list" class="card-grid">
+    <div class="card" data-type="project">
+      <img src="assets/images/project1.jpg" alt="Project Alpha">
+      <h4>Library Management System Project using MySql</h4>
+    </div>
+    <div class="card" data-type="project">
+      <img src="assets/images/project2.jpg" alt="GoDrivify">
+      <h4>GoDrivify Project Using Android Studio</h4>
+    </div>
+    <div class="card" data-type="certificate">
+      <img src="assets/images/cert2.jpg" alt="Certificate Beta">
+      <h4>Udemy: Java Masterclass</h4>
+    </div>
+    <div class="card" data-type="certificate">
+      <img src="assets/images/cert1.jpg" alt="Oracle Java">
+      <h4>Oracle Certified Professional Java SE17 Developer</h4>
+    </div>
+    <div class="card" data-type="internship">
+      <img src="assets/images/internship_logo.jpg" alt="Internship Gamma">
+      <h4>NLC Web Development Internship</h4>
+    </div>
+    <div class="card" data-type="volunteer">
+      <img src="assets/images/volunteer_logo.jpg" alt="Volunteer Delta">
+      <h4>NSS Member Volunteer</h4>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> GPK Portfolio. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  function renderFeatured(type) {
+    const cards = document.querySelectorAll('#featured-list .card');
+    cards.forEach(card => {
+      if (type === 'all') {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = card.dataset.type === type ? 'flex' : 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

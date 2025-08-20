@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPK Portfolio</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body,
+    .container.page {
+      padding-left: 15px;
+      padding-right: 15px;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .site-header .container.nav-wrap {
+      padding-left: 0;
+      padding-right: 0;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .brand {
+      white-space: nowrap;
+    }
+
+    h1 {
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 300px;
+      height: 180px;
+      margin: 10px 0;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slider-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: none;
+      margin: 0 auto;
+      cursor: pointer;
+    }
+
+    .slider-container img.active {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .prev,
+    .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 6px 10px;
+      font-size: 18px;
+      font-weight: bold;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border-radius: 999px;
+      user-select: none;
+      z-index: 2;
+      line-height: 1;
+    }
+
+    .prev {
+      left: 6px;
+    }
+
+    .next {
+      right: 6px;
+    }
+
+    .hover-card {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+      margin-top: 15px;
+      max-width: 800px;
+    }
+
+    .hover-card .logo img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .hover-card .content {
+      flex: 1;
+    }
+
+    .hover-card .content h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    .muted {
+      color: #555;
+      font-size: 0.9rem;
+      margin: 3px 0 10px 0;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+      text-align: center;
+      position: relative;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .modal-content img {
+      max-width: 80%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    .modal-image-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-prev,
+    .modal-next {
+      cursor: pointer;
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      padding: 8px 12px;
+      user-select: none;
+    }
+
+    .modal-prev {
+      margin-right: 10px;
+    }
+
+    .modal-next {
+      margin-left: 10px;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-box {
+      flex: 1;
+      text-align: center;
+      padding: 10px 0;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      min-width: 100px;
+      transition: transform 0.2s;
+    }
+
+    .btn-box:hover {
+      transform: translateY(-2px);
+    }
+
+    .certificate-btn {
+      background-color: #FF6B6B;
+    }
+
+    /* Tablet & Mobile Styles */
+    @media (max-width: 768px) {
+      .hover-card {
+        flex-direction: column; /* Logo on top */
+        align-items: center;
+        text-align: center;
+        max-width: 100%;
+        margin: 10px auto;
+        padding: 10px;
+      }
+
+      .hover-card .logo img {
+        width: 120px;
+        height: 120px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      .hover-card .content {
+        flex: 1;
+        margin-left: 0;
+      }
+
+      .hover-card .content h3,
+      .hover-card .content .muted {
+        margin: 5px 0;
+      }
+
+      .slider-container,
+      .btn-group {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .slider-container {
+        height: 140px;
+      }
+
+      .slider-container img {
+        max-width: 150px;
+        max-height: 100px;
+      }
+
+      .modal-content {
+        width: 90%;
+        max-width: 340px;
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hover-card .logo img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .slider-container {
+        height: 120px;
+      }
+
+      .slider-container img {
+        max-width: 120px;
+        max-height: 90px;
+      }
+
+      .modal-content {
+        max-width: 280px;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand">GPK <span>Portfolio</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation">&#9776;</label>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="internship.html">Internship</a>
+      <a href="projects.html">Projects</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="volunteer.html" class="active">Volunteer</a>
+      <a href="featured.html">Featured</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container page">
+  <h1>Volunteer</h1>
+  <div class="hover-card">
+    <div class="logo">
+      <img src="assets/images/volunteer_logo.jpg" alt="Volunteer Logo">
+    </div>
+    <div class="content">
+      <h3>E-Waste Awareness Campaign</h3>
+      <p class="muted">Jan 2024</p>
+      <p>Volunteered for an E-Waste Awareness Campaign, International Waste Management Association (IWMA) and Lions Club.</p>
+
+      <div class="slider-container">
+        <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+        <img src="assets/images/volunteer_photo1.jpg" alt="Volunteer Photo 1" class="active">
+        <img src="assets/images/volunteer_photo2.jpg" alt="Volunteer Photo 2">
+        <img src="assets/images/volunteer_photo3.jpg" alt="Volunteer Photo 3">
+        <span class="next" onclick="changeSlide(1)">&#10095;</span>
+      </div>
+
+      <div class="btn-group">
+        <div class="btn-box certificate-btn" onclick="openCertificateModal()">View Certificate</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="certificateModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeCertificateModal()">&times;</span>
+    <h3>Volunteer Certificate</h3>
+    <img src="assets/images/volunteer_certificate.jpg" alt="Volunteer Certificate">
+  </div>
+</div>
+
+<div id="imageModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeImageModal()">&times;</span>
+    <div class="modal-image-wrapper">
+      <span class="modal-prev" onclick="changeModalSlide(-1)">&#10094;</span>
+      <img id="modalImage" src="" alt="Slider Image">
+      <span class="modal-next" onclick="changeModalSlide(1)">&#10095;</span>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> GPK Portfolio. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+
+    const navLinks = document.querySelectorAll('nav a');
+    const navToggle = document.getElementById('nav-toggle');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (navToggle.checked) navToggle.checked = false;
+      });
+    });
+  });
+
+  function openCertificateModal() {
+    document.getElementById("certificateModal").style.display = "flex";
+  }
+  function closeCertificateModal() {
+    document.getElementById("certificateModal").style.display = "none";
+  }
+
+  (function () {
+    const slides = document.querySelectorAll(".slider-container img");
+    let currentSlide = 0;
+    slides.forEach((slide, index) => {
+      if (slide.classList.contains("active")) currentSlide = index;
+      slide.addEventListener("click", () => {
+        currentSlide = index;
+        document.getElementById("imageModal").style.display = "flex";
+        document.getElementById("modalImage").src = slides[currentSlide].src;
+      });
+    });
+    window.changeSlide = function (direction) {
+      slides[currentSlide].classList.remove("active");
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+      slides[currentSlide].classList.add("active");
+    };
+    window.changeModalSlide = function (direction) {
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+      document.getElementById("modalImage").src = slides[currentSlide].src;
+    };
+  })();
+
+  function closeImageModal() {
+    document.getElementById("imageModal").style.display = "none";
+  }
+
+  window.onclick = function (event) {
+    let certificateModal = document.getElementById("certificateModal");
+    let imageModal = document.getElementById("imageModal");
+    if (event.target == certificateModal) certificateModal.style.display = "none";
+    if (event.target == imageModal) imageModal.style.display = "none";
+  }
+</script>
+
+</body>
+</html>
